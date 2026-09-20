@@ -27,8 +27,20 @@
   transition:var(--transition);
   box-shadow:var(--shadow-sm);
 }
+.brand-logo-img{
+  width:28px;height:28px;border-radius:7px;
+  object-fit:cover;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow-sm);
+  transition:var(--transition);
+  display:block;
+}
 .brand:hover .brand-mark{
   transform:rotate(0deg) scale(1.08);
+}
+.brand:hover .brand-logo-img{
+  transform:scale(1.08);
+  border-color:var(--ink-soft);
 }
 .topnav-links{
   display:flex;justify-content:center;gap:24px;
