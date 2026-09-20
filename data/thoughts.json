@@ -1,0 +1,59 @@
+[
+  {
+    "id": "post-1",
+    "type": "thought",
+    "tag": "Hot Take",
+    "content": "Most machine learning bottlenecks aren't solved by tuning hyperparameters for 6 hours — they're solved by fixing the messy data pipeline and writing unambiguous SOPs.",
+    "author": "Ranjeet Epili",
+    "date": "Sep 2026",
+    "reactions": { "🔥": 14, "💡": 9 }
+  },
+  {
+    "id": "post-2",
+    "type": "spotify",
+    "tag": "Coding Soundtrack",
+    "title": "Late Night Coding & Ops Focus",
+    "spotifyUrl": "https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT",
+    "caption": "On repeat whenever building neural networks or refactoring dashboards at 2 AM.",
+    "date": "Sep 2026",
+    "reactions": { "❤️": 21, "🎧": 12 }
+  },
+  {
+    "id": "post-3",
+    "type": "image",
+    "tag": "Lab Vibe",
+    "title": "Hardware & Late Night Builds",
+    "imageUrl": "assets/ranjeet.png",
+    "caption": "Electronics, signals, and Python scripts running on 3 monitors simultaneously.",
+    "date": "Sep 2026",
+    "reactions": { "⚡": 18, "🔥": 27 }
+  },
+  {
+    "id": "post-4",
+    "type": "thought",
+    "tag": "Iconic Quote",
+    "content": "Simplicity is prerequisite for reliability. If your system can't be explained on a napkin, it will break at 3 AM on a Friday.",
+    "author": "Edsger W. Dijkstra / Ranjeet notes",
+    "date": "Aug 2026",
+    "reactions": { "💡": 32, "🧠": 15 }
+  },
+  {
+    "id": "post-5",
+    "type": "spotify",
+    "tag": "Deep Work",
+    "title": "Synthwave & Flow State",
+    "spotifyUrl": "https://open.spotify.com/track/0VjIjW4GlUZAMYd2vXMi3b",
+    "caption": "High tempo focus track for debugging production issues under 10 minutes.",
+    "date": "Aug 2026",
+    "reactions": { "🔥": 19, "🎧": 8 }
+  },
+  {
+    "id": "post-6",
+    "type": "thought",
+    "tag": "Ops Philosophy",
+    "content": "If you repeat a task 3 times, write an SOP. If you repeat it 5 times, write a script. If you repeat it 10 times, automate it end-to-end.",
+    "author": "Ranjeet Epili",
+    "date": "Jul 2026",
+    "reactions": { "🚀": 41, "💡": 23 }
+  }
+]

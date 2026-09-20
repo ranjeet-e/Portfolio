@@ -1,0 +1,250 @@
+/* ==========================================================================
+   hero.css — hero name/tagline, flip ID card, phone-chat back face
+   ========================================================================== */
+
+.hero-badge-row{
+  display:flex;justify-content:center;margin-bottom:14px;
+}
+.hero-status-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 14px;border-radius:999px;
+  background:var(--accent-soft);color:var(--accent);
+  border:1px solid rgba(var(--accent-rgb), 0.2);
+  font-size:12.5px;font-weight:600;
+  box-shadow:var(--shadow-sm);
+}
+.hero-status-pulse{
+  width:8px;height:8px;border-radius:50%;
+  background:#22c55e;
+  box-shadow:0 0 8px #22c55e;
+}
+
+.hero-name{
+  font-family:'Fraunces',serif;
+  font-size:clamp(44px,6.4vw,76px);
+  font-weight:600;letter-spacing:-.025em;line-height:1.05;
+  margin:0 0 16px;text-align:center;
+  background:linear-gradient(180deg, var(--ink) 30%, var(--ink-soft) 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero-tag{
+  text-align:center;color:var(--ink-soft);font-size:17px;
+  max-width:580px;margin:0 auto 36px;line-height:1.5;
+}
+
+/* ---- flip stage with stippled background portrait overlay ---- */
+.stage{
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-bottom:28px;
+  perspective:2000px;
+  min-height:360px;
+  padding:20px 0;
+}
+.stage-stipple-canvas{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width:min(720px, 94vw);
+  max-height:460px;
+  object-fit:contain;
+  pointer-events:none;
+  z-index:0;
+  opacity:0.85;
+  mask-image:radial-gradient(ellipse 70% 70% at 50% 50%, black 45%, transparent 95%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%, black 45%, transparent 95%);
+  transition:opacity 0.4s ease;
+}
+.flipcard{
+  position:relative;
+  z-index:2;
+  width:min(560px,100%);
+  height:320px;
+  cursor:pointer;
+  transform-style:preserve-3d;
+  transition:transform .75s cubic-bezier(.16,1,.3,1), box-shadow .3s ease;
+  border-radius:22px;
+}
+.flipcard:hover{
+  box-shadow:0 24px 48px -15px var(--accent-glow);
+}
+.flipcard.flipped{transform:rotateY(180deg);}
+.face{
+  position:absolute;inset:0;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  border:1px solid var(--line);
+  background:var(--card);
+}
+.face-back{transform:rotateY(180deg);}
+
+
+
+
+/* ID card face */
+.idcard{
+  background:var(--card);
+  display:flex;flex-direction:column;height:100%;
+  position:relative;
+  user-select:none;
+}
+.idcard-top{
+  background:linear-gradient(135deg, #132b1a 0%, #1e4629 100%);
+  color:#fff;padding:20px 24px 16px;flex:1;position:relative;
+  overflow:hidden;
+}
+.idcard-top::before{
+  content:"";position:absolute;top:-50%;right:-20%;
+  width:220px;height:220px;
+  background:radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+  border-radius:50%;pointer-events:none;
+}
+.idcard-header{
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;
+}
+.idcard-school{
+  font-family:'Fraunces',serif;font-size:36px;font-weight:700;
+  letter-spacing:-.02em;margin:0;line-height:1;
+  color:#ffffff;
+}
+.idcard-school-sub{
+  font-size:10.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,0.7);
+}
+.idcard-row{display:flex;gap:16px;align-items:stretch;}
+.idcard-photo-wrap{
+  width:96px;height:112px;border-radius:8px;overflow:hidden;
+  flex:0 0 auto;border:2px solid rgba(255,255,255,0.85);
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+  background:#111;
+}
+.idcard-photo-img{
+  width:100%;height:100%;object-fit:cover;object-position:center top;
+  display:block;
+}
+.idcard-info{
+  flex:1;background:rgba(255,255,255,.98);color:#111;
+  border-radius:10px;padding:10px 14px;position:relative;
+  box-shadow:0 4px 14px rgba(0,0,0,0.15);
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.idcard-info .who{font-weight:800;font-size:14px;letter-spacing:-.01em;color:#111;}
+.idcard-info .cls{color:#c1443a;font-weight:700;font-size:11px;letter-spacing:.04em;margin-top:1px;}
+.idcard-meta{display:flex;justify-content:space-between;margin-top:6px;font-size:11px;}
+.idcard-meta div{line-height:1.4;}
+.idcard-meta .label{color:#666;font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.02em;}
+.idcard-meta .val{font-weight:700;text-align:right;color:#111;}
+.click-me{
+  position:absolute;top:14px;right:18px;
+  background:rgba(0,0,0,0.65);backdrop-filter:blur(6px);
+  color:#fff;font-size:11px;font-weight:600;
+  padding:5px 12px;border-radius:999px;white-space:nowrap;
+  border:1px solid rgba(255,255,255,0.2);
+  display:flex;align-items:center;gap:5px;
+  animation:pop 2.6s ease-in-out infinite;
+}
+@keyframes pop{
+  0%,100%{transform:translateY(0);opacity:.85;}
+  50%{transform:translateY(-3px);opacity:1;}
+}
+.idcard-bottom{
+  background:#ffffff;color:#111;padding:10px 22px;
+  display:flex;justify-content:space-between;align-items:flex-end;
+  border-top:1px solid #eee;
+}
+.idcard-bottom .student{
+  font-weight:900;font-size:12px;letter-spacing:.08em;color:#111;
+  display:flex;flex-direction:column;gap:1px;
+}
+.idcard-bottom .student small{font-size:9px;color:#666;font-weight:600;}
+.barcode-box{display:flex;flex-direction:column;align-items:flex-end;}
+.barcode{
+  height:28px;width:180px;background:
+  repeating-linear-gradient(90deg,#111 0 2px,transparent 2px 4px,#111 4px 5px,transparent 5px 7px,#111 7px 10px,transparent 10px 11px);
+}
+.barcode-num{font-size:8.5px;letter-spacing:.14em;color:#555;margin-top:2px;text-align:right;font-family:monospace;}
+
+/* phone chat face */
+.phone{
+  background:var(--card);border:8px solid #1a1b1e;border-radius:22px;
+  display:flex;flex-direction:column;height:100%;
+}
+.phone-bar{
+  height:18px;position:relative;flex:0 0 auto;
+  background:var(--bg-sunken);border-bottom:1px solid var(--line);
+}
+.phone-bar::after{
+  content:"";position:absolute;left:50%;top:5px;transform:translateX(-50%);
+  width:60px;height:4px;background:var(--ink-faint);border-radius:4px;opacity:0.4;
+}
+.phone-body{
+  flex:1;padding:14px 16px;display:flex;flex-direction:column;
+  overflow-y:auto;gap:10px;
+}
+.chat-bubble{
+  display:flex;align-items:flex-start;gap:9px;max-width:86%;
+  animation:fade-slide 0.3s ease;
+}
+@keyframes fade-slide{
+  from{opacity:0;transform:translateY(6px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.chat-bubble.bot{align-self:flex-start;}
+.chat-bubble.user{align-self:flex-end;flex-direction:row-reverse;}
+.chat-bubble img{width:26px;height:26px;border-radius:50%;object-fit:cover;flex:0 0 auto;}
+.chat-bubble p{
+  background:var(--bg-sunken);border-radius:14px 14px 14px 4px;
+  padding:8px 13px;margin:0;font-size:13px;font-weight:500;
+  border:1px solid var(--line);line-height:1.45;
+}
+.chat-bubble.user p{
+  background:var(--accent);color:#fff;
+  border-radius:14px 14px 4px 14px;border:none;
+}
+.phone-chips{
+  display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:6px;
+}
+.chat-chip{
+  background:var(--bg-sunken);color:var(--ink);
+  border:1px solid var(--line);padding:5px 10px;border-radius:999px;
+  font-size:11.5px;font-weight:600;cursor:pointer;transition:var(--transition);
+}
+.chat-chip:hover{
+  background:var(--accent-soft);color:var(--accent);
+  border-color:var(--accent);transform:translateY(-1px);
+}
+.phone-input{
+  margin-top:6px;display:flex;gap:6px;align-items:center;
+}
+.phone-input input{
+  flex:1;border:1px solid var(--line);background:var(--bg-sunken);
+  border-radius:999px;padding:8px 12px;font-size:12.5px;color:var(--ink);
+  outline:none;transition:var(--transition);
+}
+.phone-input input:focus{border-color:var(--accent);}
+.phone-send{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--accent);color:#fff;
+  border:none;display:grid;place-items:center;
+  flex:0 0 auto;cursor:pointer;transition:var(--transition);
+}
+.phone-send:hover{opacity:0.9;transform:scale(1.05);}
+
+.stage-hint{
+  text-align:center;font-size:12.5px;color:var(--ink-faint);
+  margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:6px;
+}
+
+.mini-badges{display:flex;justify-content:center;gap:10px;margin-bottom:44px;}
+.mini-badges span{
+  padding:5px 12px;border-radius:999px;border:1px solid var(--line);
+  display:flex;align-items:center;gap:6px;font-weight:700;font-size:11.5px;
+  background:var(--card);box-shadow:var(--shadow-sm);
+}
+
