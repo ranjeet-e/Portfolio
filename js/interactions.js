@@ -540,8 +540,8 @@ function initDotStippling() {
   const img = new Image();
   img.crossOrigin = "Anonymous";
 
-  // Try public/portrait.jpg first, fallback to assets/ranjeet.png
-  img.src = "public/portrait.jpg";
+  // Try assets/portrait.jpg first, fallback to assets/ranjeet.png
+  img.src = "assets/portrait.jpg";
   img.onerror = () => {
     if (!img.src.includes('assets/ranjeet.png')) {
       img.src = "assets/ranjeet.png";
