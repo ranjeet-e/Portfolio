@@ -540,20 +540,20 @@ function initDotStippling() {
   const img = new Image();
   img.crossOrigin = "Anonymous";
 
-  // Try assets/portrait.jpg first, fallback to assets/ranjeet.png
-  img.src = "assets/portrait.jpg";
+  // Use the speech podium portrait cutout
+  img.src = "assets/speech-portrait.png";
   img.onerror = () => {
-    if (!img.src.includes('assets/ranjeet.png')) {
-      img.src = "assets/ranjeet.png";
+    if (!img.src.includes('assets/portrait.jpg')) {
+      img.src = "assets/portrait.jpg";
     }
   };
 
   function renderStipple() {
     if (!img.complete || img.naturalWidth === 0) return;
 
-    // High resolution render width for crisp dots
-    const renderWidth = 540;
-    const renderHeight = Math.round((img.height * renderWidth) / img.width);
+    // High definition render width for crisp dots
+    const renderWidth = 420;
+    const renderHeight = Math.round((img.naturalHeight * renderWidth) / img.naturalWidth);
     
     canvas.width = renderWidth;
     canvas.height = renderHeight;
@@ -581,20 +581,32 @@ function initDotStippling() {
         const r = imgData[index];
         const g = imgData[index + 1];
         const b = imgData[index + 2];
+        const a = imgData[index + 3];
+
+        // Skip transparent background pixels
+        if (a < 35) continue;
 
         // Normalized luminance (0.0 to 1.0)
         let brightness = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
         
-        // In light theme, dark areas get dots; in dark theme, bright areas get dots
-        const factor = isDark ? brightness : (1 - brightness);
-        const probability = Math.pow(factor, 1.45);
+        // Calculate probability of dot based on theme & shading
+        let factor;
+        if (isDark) {
+          // In dark theme, brighter areas get more dots, dark areas get subtle dots
+          factor = Math.max(0.12, brightness * (a / 255));
+        } else {
+          // In light theme, darker areas get more dots
+          factor = Math.max(0.14, (1 - brightness * 0.85) * (a / 255));
+        }
+
+        const probability = Math.pow(factor, 1.25);
 
         if (Math.random() < probability) {
-          const jitterX = x + (Math.random() - 0.5) * 1.6;
-          const jitterY = y + (Math.random() - 0.5) * 1.6;
-          const dotSize = Math.random() * 1.2 + 0.5;
+          const jitterX = x + (Math.random() - 0.5) * 1.5;
+          const jitterY = y + (Math.random() - 0.5) * 1.5;
+          const dotSize = Math.random() * 1.2 + 0.55;
 
-          ctx.globalAlpha = Math.min(factor + 0.2, 0.9);
+          ctx.globalAlpha = Math.min(factor * 0.95 + 0.15, 0.95);
           ctx.beginPath();
           ctx.arc(jitterX, jitterY, dotSize, 0, Math.PI * 2);
           ctx.fill();
